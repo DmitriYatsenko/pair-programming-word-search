@@ -3,8 +3,9 @@ const assert = chai.assert;
 
 const wordSearch = require('../wordsearch.js')
 
-describe("#wordSearch()", function() {
-  it("should return false if the word is not present", function() {
+describe("#wordSearch()", function () {
+//-----------------------------------------------------------------------------------------------------------------
+  it("should return false if the word is not present", function () {
     const result = wordSearch([
       ['A', 'W', 'C', 'F', 'Q', 'U', 'A', 'L'],
       ['S', 'E', 'I', 'N', 'F', 'E', 'L', 'D'],
@@ -14,13 +15,13 @@ describe("#wordSearch()", function() {
       ['B', 'F', 'R', 'E', 'N', 'E', 'Y', 'B'],
       ['U', 'B', 'T', 'W', 'A', 'P', 'A', 'I'],
       ['O', 'D', 'C', 'A', 'K', 'U', 'A', 'S'],
-      ['E', 'Z', 'K', 'F', 'Q', 'U', 'A', 'L'],
+      ['E', 'Z', 'K', 'F', 'Q', 'U', 'A', 'L']
     ], 'FRANK')
 
     assert.isFalse(result);
   });
-
-  it("should return true if the word is present", function() {
+//-----------------------------------------------------------------------------------------------------------------
+  it("should return true if the word is present", function () {
     const result = wordSearch([
       ['A', 'W', 'C', 'F', 'Q', 'U', 'A', 'L'],
       ['S', 'E', 'I', 'N', 'F', 'E', 'L', 'D'],
@@ -30,9 +31,34 @@ describe("#wordSearch()", function() {
       ['B', 'F', 'R', 'E', 'N', 'E', 'Y', 'B'],
       ['U', 'B', 'T', 'W', 'A', 'P', 'A', 'I'],
       ['O', 'D', 'C', 'A', 'K', 'U', 'A', 'S'],
-      ['E', 'Z', 'K', 'F', 'Q', 'U', 'A', 'L'],
+      ['E', 'Z', 'K', 'F', 'Q', 'U', 'A', 'L']
     ], 'SEINFELD')
 
     assert.isTrue(result);
   });
+//-----------------------------------------------------------------------------------------------------------------
+  it("should return true if the array only has 1 letter and the word consists of the same letter", function () {
+    const result = wordSearch([
+      ['A']
+    ], 'A')
+
+    assert.isTrue(result);
+  });
+//-----------------------------------------------------------------------------------------------------------------
+  it("should return false if the array only has 1 letter and the word doesn't consist of the same letter", function () {
+    const result = wordSearch([
+      ['A']
+    ], 'S')
+
+    assert.isFalse(result);
+  });
+//-----------------------------------------------------------------------------------------------------------------
+  it("should return false if the array is empty", function () {
+    const result = wordSearch([
+      []
+    ], 'W')
+
+    assert.isFalse(result);
+  });
+//-----------------------------------------------------------------------------------------------------------------
 });
